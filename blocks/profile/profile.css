@@ -4,6 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
 @media screen and (max-width: 915px) {
