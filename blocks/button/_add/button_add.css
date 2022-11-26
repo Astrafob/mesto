@@ -7,3 +7,17 @@
   background-position: center;
   border: 2px solid white;
 }
+
+@media screen and (max-width: 700px) {
+  .button_add {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 32px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button_add {
+    background-size: 6%;
+  }
+}

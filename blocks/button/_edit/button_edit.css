@@ -7,3 +7,10 @@
   width: 24px;
   height: 24px;
 }
+
+@media screen and (max-width: 525px) {
+  .button_edit {
+    width: 18px;
+    height: 18px;
+  }
+}

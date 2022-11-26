@@ -8,4 +8,9 @@
   width: 22px;
   height: 19px;
   cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.card__button-like:hover {
+  opacity: 0.6;
 }
