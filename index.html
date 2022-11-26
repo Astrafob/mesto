@@ -13,8 +13,15 @@
 <body class="page">
   <div class="page__container">
     <section class="popup">
-      <div class="edit-form"></div>
-      <button class="edit-form__close-button" type="button"></button>
+      <div class="popup__container">
+        <form class="popup__edit-form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__visitor-name" type="text" placeholder="Имя">
+          <input class="popup__about-the-visitor" type="text" placeholder="Увлечение">
+          <button class="popup__save-button" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button" type="button"></button>
+      </div>
     </section>
     <header class="header">
       <img src="./image/logo.svg" class="logo-header" alt="Логотип Место">
