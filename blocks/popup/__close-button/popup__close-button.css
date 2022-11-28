@@ -9,6 +9,7 @@
   background-size: cover;
   right: -40px;
   top: -40px;
+  cursor: pointer;
   transition: opacity .2s ease-in;
 }
 

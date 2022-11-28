@@ -1,4 +1,4 @@
-.button_edit {
+.button_edit_open {
   background-image: url(../../../image/pen-edit.svg);
   background-repeat: no-repeat;
   background-size: 45%;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  .button_edit {
+  .button_edit_open {
     min-width: 18px;
     height: 18px;
     margin-left: 10px;

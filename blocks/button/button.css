@@ -1,6 +1,6 @@
 .button {
   border: 1px solid white;
-  background-color: black;
+  background-color: transparent;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }

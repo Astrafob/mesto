@@ -9,9 +9,3 @@
   font-size: 14px;
   line-height: 17px;
 }
-
-@media screen and (max-width: 555px) {
-  .popup__about-the-visitor {
-    margin-bottom: 45px;
-  }
-}
