@@ -12,8 +12,8 @@ const jobInput = popup.querySelector('#jobVisitor');
 const profileName = profile.querySelector('.profile__title');
 const profileJob = profile.querySelector('.profile__subtitle');
 
-const cards = document.querySelector('.cards');
-const buttonLike = cards.querySelectorAll('.card__button-like');
+// const cards = document.querySelector('.cards');
+// const buttonLike = cards.querySelectorAll('.card__button-like');
 
 //Открытие поп-апа
 function openPopup() {
@@ -35,15 +35,15 @@ function handleFormSubmit(evt) {
   profileName.textContent = nameImput.value;
   profileJob.textContent = jobInput.value;
 
-  popup.classList.remove('popup_opened');
+  closePopup();
 }
 
-//закрашиваем сердечки
-const onClick = (event) => {
-  event.target.classList.toggle('card__button-like_active');
-};
+// //закрашиваем сердечки
+// const onClick = (event) => {
+//   event.target.classList.toggle('card__button-like_active');
+// };
 
-buttonLike.forEach((element) => element.addEventListener('click', onClick));
+// buttonLike.forEach((element) => element.addEventListener('click', onClick));
 
 buttonProfileEdit.addEventListener('click', openPopup);
 

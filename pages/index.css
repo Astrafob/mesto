@@ -26,8 +26,8 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 
 @import url(../blocks/button/button.css);
-@import url(../blocks/button/_edit_open/button_edit_open.css);
-@import url(../blocks/button/_add_open/button_add_open.css);
+@import url(../blocks/button/_edit/button_edit_open.css);
+@import url(../blocks/button/_add/button_add_open.css);
 
 @import url(../blocks/cards/cards.css);
 
