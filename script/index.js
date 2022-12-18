@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const buttonsClosePopup = document.querySelectorAll('.popup__close-button');
 const buttonsSavePopup = document.querySelectorAll('.popup__save-button');
 const popupEditProfile = document.querySelector('#popupEditProfile');
@@ -55,14 +28,14 @@ const photo = popupImage.querySelector('img');
 const caption = popupImage.querySelector('.popup__caption-image');
 
 // Функция открытия попапа
-function openPopup(element) {
-  const popup = element.closest('.popup');
+function openPopup(modalElement) {
+  const popup = modalElement.closest('.popup');
   popup.classList.add('popup_opened');
 }
 
 // Функция закрытия попапа
-function closePopup(element) {
-  const popup = element.closest('.popup');
+function closePopup(modalElement) {
+  const popup = modalElement.closest('.popup');
   popup.classList.remove('popup_opened');
 }
 
@@ -94,8 +67,7 @@ const viewImage = (event) => {
 // Закрытие всех попапов на крестик
 buttonsClosePopup.forEach((button) => {
   button.addEventListener('click', (event) => {
-    const popup = event.target.closest('.popup');
-    popup.classList.remove('popup_opened');
+    closePopup(event.target);
   });
 });
 
@@ -127,7 +99,7 @@ function createCard(card) {
 
 // Рендер шаблона карточек
 const createCards = () => {
-  initialCards.forEach((card) => {
+  window.initialCards.forEach((card) => {
     createCard(card);
   });
 };
