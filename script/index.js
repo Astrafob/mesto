@@ -54,13 +54,50 @@ const cardImage = cards.querySelectorAll('img');
 const photo = popupImage.querySelector('img');
 const caption = popupImage.querySelector('.popup__caption-image');
 
+// Функция открытия попапа
+function openPopup(element) {
+  const popup = element.closest('.popup');
+  popup.classList.add('popup_opened');
+}
+
+// Функция закрытия попапа
+function closePopup(element) {
+  const popup = element.closest('.popup');
+  popup.classList.remove('popup_opened');
+}
+
+//Открытие поп-апа "редактор профиля"
+function openPopupEditProfile() {
+  nameImput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+
+  openPopup(popupEditProfile);
+}
+
+//Открытие поп-апа "добавление карточки"
+function openPopupAddCard() {
+  placeName.value = '';
+  placePhotoURL.value = '';
+
+  openPopup(popupAddCard);
+}
+
 // Открытие поп-апа "просмотр фото"
 const viewImage = (event) => {
   photo.src = event.target.getAttribute('src');
   photo.alt = event.target.getAttribute('alt');
   caption.textContent = event.target.parentElement.querySelector('.card__title').textContent;
-  popupImage.classList.add('popup_opened');
+
+  openPopup(popupImage);
 };
+
+// Закрытие всех попапов на крестик
+buttonsClosePopup.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    const popup = event.target.closest('.popup');
+    popup.classList.remove('popup_opened');
+  });
+});
 
 // Обработка клика по иконке "лайк"
 const likeImage = (event) => {
@@ -74,7 +111,7 @@ const deleteCard = (event) => {
 
 // Создание новой карточки
 function createCard(card) {
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImageElement = cardElement.querySelector('.card__image');
 
   cardImageElement.alt = card.name;
@@ -96,32 +133,18 @@ const createCards = () => {
 };
 createCards();
 
-//Открытие поп-апа "редактор профиля"
-function openPopupEditProfile() {
-  popupEditProfile.classList.add('popup_opened');
-
-  nameImput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-}
-
-//Открытие поп-апа "добавление карточки"
-function openPopupAddCard() {
-  popupAddCard.classList.add('popup_opened');
-
-  placeName.value = '';
-  placePhotoURL.value = '';
-}
-
 //перенос значений формы на страницу
 function handleFormSubmit(event) {
   event.preventDefault();
 
   profileName.textContent = nameImput.value;
   profileJob.textContent = jobInput.value;
+
+  closePopup(popupEditProfile);
 }
 
 // Добавление новой карточки с помощью формы
-function createFormSubmit(event) {
+function createNewCardFormSubmit(event) {
   event.preventDefault();
 
   const card = {};
@@ -130,28 +153,13 @@ function createFormSubmit(event) {
   card.link = placePhotoURL.value;
 
   createCard(card);
+  closePopup(popupAddCard);
 }
 
-// Закрытие всех попапов на крестик
-buttonsClosePopup.forEach((button) => {
-  button.addEventListener('click', (event) => {
-    const popup = event.target.closest('.popup');
-    popup.classList.remove('popup_opened');
-  });
-});
+formElement.addEventListener('submit', handleFormSubmit);  //Слушатель формы "редактор профиля"
 
-// Закрытие попапов редактировани и создания на кнопку "сохранить"
-buttonsSavePopup.forEach((button) => {
-  button.addEventListener('click', (event) => {
-    const popup = event.target.closest('.popup');
-    popup.classList.remove('popup_opened');
-  });
-});
+formBlock.addEventListener('submit', createNewCardFormSubmit); //Слушатель формы "создание карточки"
 
 buttonProfileEdit.addEventListener('click', openPopupEditProfile);  //Слушатель кнопки "редактор профиля"
 
 buttonAddCard.addEventListener('click', openPopupAddCard);  //Слушатель кнопки "добавление карточки"
-
-formElement.addEventListener('submit', handleFormSubmit);  //Слушатель формы "редактор профиля"
-
-formBlock.addEventListener('submit', createFormSubmit); //Слушатель формы "создание карточки"
