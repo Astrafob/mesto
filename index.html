@@ -35,12 +35,14 @@
     <footer class="footer">&copy; 2022 Mesto Russia</footer>
     <div class="popup" id="popupEditProfile">
       <div class="popup__container">
-        <form class="popup__edit-form" name="editProfile">
+        <form class="popup__edit-form" id="editProfile" name="editProfile" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input-text" id="nameVisitor" name="name" type="text" maxlength="17" minlength="3"
-            placeholder="Имя">
-          <input class="popup__input-text" id="jobVisitor" name="job" type="text" maxlength="25" minlength="3"
-            placeholder="Увлечение">
+          <input class="popup__input-text" id="nameVisitor" name="name" type="text" maxlength="40" minlength="2"
+            placeholder="Имя" required>
+          <span class="popup__input-error nameVisitor-error"></span>
+          <input class="popup__input-text" id="jobVisitor" name="job" type="text" maxlength="200" minlength="2"
+            placeholder="Увлечение" required>
+          <span class="popup__input-error jobVisitor-error"></span>
           <button class="popup__save-button" aria-label="сохранение данных" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button" id="closeEditProfile" aria-label="закрыть попап" type="button"></button>
@@ -48,12 +50,14 @@
     </div>
     <div class="popup" id="popupAddCard">
       <div class="popup__container">
-        <form class="popup__edit-form" name="editForm">
+        <form class="popup__edit-form" id="editForm" name="editForm" novalidate>
           <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input-text" id="placeName" name="placeName" type="text" maxlength="30" minlength="1"
-            placeholder="Название">
+          <input class="popup__input-text" id="placeName" name="placeName" type="text" maxlength="30" minlength="2"
+            placeholder="Название" required>
+          <span class="popup__input-error placeName-error"></span>
           <input class="popup__input-text" id="placePhotoURL" name="placePhotoURL" type="url"
-            placeholder="Ссылка на картинку">
+            placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error placePhotoURL-error"></span>
           <button class="popup__save-button" aria-label="сохранение данных" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button" id="closeAddCard" aria-label="закрыть попап" type="button"></button>
@@ -79,6 +83,7 @@
       </article>
     </template>
   </div>
+  <script src="./script/validate.js"></script>
   <script src="./script/data.js"></script>
   <script src="./script/index.js"></script>
 </body>

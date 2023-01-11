@@ -1,5 +1,6 @@
 const buttonsClosePopup = document.querySelectorAll('.popup__close-button');
 const buttonsSavePopup = document.querySelectorAll('.popup__save-button');
+const containersPopup = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const cardTemplate = document.querySelector('#card').content;
 const popupAddCard = document.querySelector('#popupAddCard');
@@ -27,15 +28,27 @@ const cardImage = cards.querySelectorAll('img');
 const photo = popupImage.querySelector('img');
 const caption = popupImage.querySelector('.popup__caption-image');
 
+const validationConfig = {
+  formSelector: '.popup__edit-form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button-type-inactive',
+  inputErrorBorderClass: 'popup__input-text_type_error',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input-error_visible'
+};
+
 // Функция открытия попапа
 function openPopup(modalElement) {
   const popup = modalElement.closest('.popup');
+  document.addEventListener('keydown', closePopupOnEsc);
   popup.classList.add('popup_opened');
 }
 
 // Функция закрытия попапа
 function closePopup(modalElement) {
   const popup = modalElement.closest('.popup');
+  document.removeEventListener('keydown', closePopupOnEsc);
   popup.classList.remove('popup_opened');
 }
 
@@ -49,11 +62,25 @@ function openPopupEditProfile() {
 
 //Открытие поп-апа "добавление карточки"
 function openPopupAddCard() {
-  placeName.value = '';
-  placePhotoURL.value = '';
-
   openPopup(popupAddCard);
 }
+
+// Закрытие поп-апа по кнопке 'ESC'
+const closePopupOnEsc = (event) => {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+};
+
+// Закрыйтие поп-апов по клику вне контейнера
+containersPopup.forEach((container) => {
+  container.addEventListener('click', (event) => {
+    if (!event.target.closest('.popup__container')) {
+      closePopup(container);
+    }
+  });
+});
 
 // Открытие поп-апа "просмотр фото"
 const viewImage = (event) => {
@@ -94,7 +121,7 @@ function createCard(card) {
   cardElement.querySelector('.card__delete').addEventListener('click', deleteCard);
   cardImageElement.addEventListener('click', viewImage);
 
-  cards.prepend(cardElement);
+  cards.prepend(cardElement);  
 }
 
 // Рендер шаблона карточек
@@ -112,6 +139,7 @@ function handleFormSubmit(event) {
   profileName.textContent = nameImput.value;
   profileJob.textContent = jobInput.value;
 
+  addInactiveButton(event);
   closePopup(popupEditProfile);
 }
 
@@ -125,7 +153,17 @@ function createNewCardFormSubmit(event) {
   card.link = placePhotoURL.value;
 
   createCard(card);
+
+  formBlock.reset();
+
+  addInactiveButton(event);
   closePopup(popupAddCard);
+}
+
+// добавить класс неактивной кнопки "Сохранить"
+function addInactiveButton(event) {
+  const saveButton = event.submitter;
+  saveButton.classList.add('popup__save-button-type-inactive');
 }
 
 formElement.addEventListener('submit', handleFormSubmit);  //Слушатель формы "редактор профиля"
@@ -135,3 +173,6 @@ formBlock.addEventListener('submit', createNewCardFormSubmit); //Слушате�
 buttonProfileEdit.addEventListener('click', openPopupEditProfile);  //Слушатель кнопки "редактор профиля"
 
 buttonAddCard.addEventListener('click', openPopupAddCard);  //Слушатель кнопки "добавление карточки"
+
+
+enableValidation(validationConfig); // Подключаем валидацию
