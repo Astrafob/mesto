@@ -14,7 +14,6 @@ const validationConfig = {
 
 const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('#popupEditProfile');
-// const cardTemplate = document.querySelector('#card').content;
 const popupAddCard = document.querySelector('#popupAddCard');
 const popupImage = document.querySelector('#popupViewPhoto');
 const profile = document.querySelector('.profile');
@@ -65,7 +64,7 @@ function openPopupEditProfile() {
 function openPopupAddCard() {
   formAddCard.reset();
 
-  clearFormAddCard();
+  popupAddCardValidation.resetValidation();
 
   openPopup(popupAddCard);
 }
@@ -100,61 +99,20 @@ const viewImage = (title, link) => {
   openPopup(popupImage);
 };
 
-//очистка span формы formAddCard
-
-function clearFormAddCard() {
-  popupAddCard.querySelector('.placeName-error').textContent = '';
-  popupAddCard.querySelector('.placePhotoURL-error').textContent = '';
-
-  placeName.classList.remove('popup__input-text_type_error');
-  placePhotoURL.classList.remove('popup__input-text_type_error');  
-}
-
-// Обработка клика по иконке "лайк"
-
-// const toggleLike = (event) => {
-//   event.target.classList.toggle('card__button-like_active');
-// };
-
-// Обработка клика по иконке "удалить"
-
-// const deleteCard = (event) => {
-//   event.target.closest('.card').remove();
-// };
-
-// Создание шаблона карточек
-
-// function getCard(title, link) {
-//   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-//   const cardImageElement = cardElement.querySelector('.card__image');
-
-//   cardImageElement.alt = title;
-//   cardImageElement.src = link;
-//   cardElement.querySelector('.card__title').textContent = title;
-
-//   cardElement.querySelector('.card__button-like').addEventListener('click', toggleLike);
-//   cardElement.querySelector('.card__delete').addEventListener('click', deleteCard);
-//   cardImageElement.addEventListener('click', () => viewImage(title, link));
-
-//   return cardElement;
-// }
-
-// Вставляем карточки в DOM
-
-// function createCard(title, link) {
-//   const cardElement = getCard(title, link);
-//   cards.prepend(cardElement);  
-// }
-
 const createCard = (dataCard) => {
   const card = new Card(dataCard, '#card', viewImage);
-  cards.prepend(card.getCard());
+  const cardElement = card.getCard();
+  return cardElement;
+};
+
+const handleCardCreate = (dataCard) => {
+  cards.prepend(createCard(dataCard));
 };
 
 // Рендер шаблона карточек
 const createCards = () => {
   initialCards.forEach((dataCard) => {
-    createCard(dataCard);
+    handleCardCreate(dataCard);
   });
 };
 createCards();
@@ -178,7 +136,7 @@ function createNewCard(event) {
   card.name = placeName.value;
   card.link = placePhotoURL.value;
 
-  createCard(card);
+  handleCardCreate(card);
 
   formAddCard.reset();
 

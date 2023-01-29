@@ -10,7 +10,6 @@ export class FormValidator {
     this._form = formElement;
     this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
-    this._formList = Array.from(document.querySelectorAll(this._formSelector));
   }
 
   _showInputError(inputElement) {
@@ -74,13 +73,21 @@ export class FormValidator {
       });
     });
   }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   enableValidation() {
-    this._formList.forEach((formElement) => {
-      formElement.addEventListener('submit', function (evt) {
+      this._form.addEventListener('submit', function (evt) {
         evt.preventDefault();
       });
   
       this._setEventListeners();
-    });
   }
+  
 }
