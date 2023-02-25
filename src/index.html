@@ -6,19 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="фото место Россия">
   <meta name="author" content="Олег Виноградов">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto Russia</title>
 </head>
 
 <body class="page">
   <div class="page__container">
     <header class="header">
-      <img src="./image/logo.svg" class="logo-header" alt="Логотип Место">
+      <img src="<%=require('./image/logo.svg')%>" class="logo-header" alt="Логотип Место">
     </header>
     <main class="main">
       <section class="profile">
         <div class="profile__info">
-          <img src="./image/profile-image.jpg" class="profile__photo" alt="фото профиля">
+          <img src="<%=require('./image/profile-image.jpg')%>" class="profile__photo" alt="фото профиля">
           <div class="profile__wrapper">
             <div class="profile__name">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -83,7 +82,6 @@
       </article>
     </template>
   </div>
-  <script type="module" src="./script/index.js"></script>
 </body>
 
 </html>

@@ -1,16 +1,7 @@
-import { Card } from "./Card.js";
-import { initialCards } from "./data.js";
-import { FormValidator } from "./FormValidator.js";
-
-const validationConfig = {
-  formSelector: '.popup__edit-form',
-  inputSelector: '.popup__input-text',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button-type-inactive',
-  inputErrorBorderClass: 'popup__input-text_type_error',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input-error_visible'
-};
+import { validationConfig, initialCards } from '../utils/constants.js';
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import './index.css';
 
 const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('#popupEditProfile');
@@ -54,6 +45,7 @@ function closePopup(modalElement) {
 
 //Открытие поп-апа "редактор профиля"
 function openPopupEditProfile() {
+
   nameImput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 
