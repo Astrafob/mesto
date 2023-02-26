@@ -1,9 +1,9 @@
 export class Card {
-  constructor (dataCard, templateSelector, viewImage) {
+  constructor (dataCard, templateSelector, handleCardClick) {
     this._title = dataCard.name;
     this._link = dataCard.link;
     this._templateSelector = templateSelector;
-    this._imageClickHendler = viewImage;
+    this._imageClickHendler = handleCardClick;
   }
 
   _createCardElement() {
