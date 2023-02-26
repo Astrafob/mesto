@@ -49,6 +49,7 @@ const openPopupWithImage = (title, link) => {
 };
 
 const createCard = (dataCard) => {
+  console.log(dataCard);
   const card = new Card(dataCard, '#card', openPopupWithImage);
   const cardElement = card.getCard();
   return cardElement;
@@ -64,7 +65,6 @@ function handleSubmitAddCard(objectInputs) {
 
 buttonProfileEdit.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
-  console.log(userData);
   nameImput.value = userData.name;
   jobInput.value = userData.job;
   popupProfile.open();

@@ -4,12 +4,12 @@ export class PopupWithForm extends Popup {
   constructor(popupSelector, callbackSubmitForm) {
     super(popupSelector);
     this._callbackSubmitForm = callbackSubmitForm;
-    this._elementForm = this._selector.querySelector('.popup__edit-form');
+    this._elementForm = this._popup.querySelector('.popup__edit-form');
+    this._inputList = this._popup.querySelectorAll('.popup__input-text');
   }
 
   _getInputValues() {
     this._inputValues = {};
-    this._inputList = this._selector.querySelectorAll('.popup__input-text');
     this._inputList.forEach((inputElement) => {
       this._inputValues[inputElement.name] = inputElement.value;
     });
