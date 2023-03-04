@@ -30,11 +30,10 @@ export class Card {
   }
 
   _setData() {
-    const cardImage = this._newCard.querySelector('.card__image');
     const cardTitle = this._newCard.querySelector('.card__title');
     
-    cardImage.alt = this._title;
-    cardImage.src = this._link;
+    this._viewImage.alt = this._title;
+    this._viewImage.src = this._link;
     cardTitle.textContent = this._title;
 
     this._newCard.id = this.idCard;

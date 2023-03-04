@@ -42,7 +42,7 @@ export class PopupWithForm extends Popup {
       console.log(this._objectInputs);
       this._callbackSubmitForm(this._objectInputs);
 
-      this.close();
+      // this.close();
     });
   }
 
