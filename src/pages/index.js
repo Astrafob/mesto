@@ -10,7 +10,6 @@ import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { Api } from '../components/Api.js';
 import UserInfo from '../components/UserInfo.js';
 
-// const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('#popupEditProfile');
 const popupAddCard = document.querySelector('#popupAddCard');
 const popupEditAvatarProfile = document.querySelector('#popupEditAvatarProfile');
@@ -28,13 +27,6 @@ const avatarProfile = profile.querySelector('.profile__photo');
 
 const nameImput = popupEditProfile.querySelector('#name');
 const jobInput = popupEditProfile.querySelector('#about');
-// const formProfile = popupEditProfile.querySelector('.popup__edit-form');
-// const formAddCard = popupAddCard.querySelector('.popup__edit-form');
-// const placeName = popupAddCard.querySelector('#placeName');
-// const placePhotoURL = popupAddCard.querySelector('#placePhotoURL');
-
-// const photo = popupImage.querySelector('img');
-// const caption = popupImage.querySelector('.popup__caption-image');
 
 const popupEditProfileValidation = new FormValidator(validationConfig, popupEditProfile);
 const popupAddCardValidation = new FormValidator(validationConfig, popupAddCard);
@@ -96,7 +88,6 @@ const deleteLike = (card) => {
 };
 
 function handleSubmitEditProfile(objectInputs) {
-  // userInfo.setUserInfo(objectInputs);
   popupProfile.addSaveState();
   api.editProfile(objectInputs)
     .then((res) => {
@@ -112,7 +103,6 @@ function handleSubmitEditProfile(objectInputs) {
 }
 
 function handleSubmitAddCard(objectInputs) {
-  // defaultSection.addItem(createCard(objectInputs));
   popupAddCardElement.addSaveState();
   api.addCard(objectInputs)
     .then((res) => {
@@ -128,7 +118,6 @@ function handleSubmitAddCard(objectInputs) {
 }
 
 function handleSubmitEditAvatar(objectInputs) {
-  // avatarProfile.src = objectInputs.link;
   popupEditAvatar.addSaveState();
   api.editProfileImage(objectInputs)
     .then((res) => {
@@ -166,10 +155,6 @@ function handleDeleteCard(dataCard) {
 }
 
 buttonProfileEdit.addEventListener('click', () => {
-  // const userData = userInfo.getUserInfo();
-  // nameImput.value = userData.name;
-  // jobInput.value = userData.about;
-  // popupProfile.setInputValues(userInfo.getUserInfo());
   popupProfile.setInputValues(userInfo.getUserInfo());
   popupProfile.open();
 });
@@ -192,26 +177,3 @@ popupAddCardElement.setEventListeners();
 popupWithImage.setEventListeners();
 popupEditAvatar.setEventListeners();
 popupConfirmation.setEventListeners();
-
-// api.getCards().then((res) => {
-//   if(res.ok) {
-//     return res.json();
-//   } else {
-//     return console.log('api.getCards Error');
-//   }
-// }).then((data) => {
-//   defaultSection.rendererAll(data);
-//   })
-//   .catch(err => console.log(err));
-
-// api.getPersonInfo().then((res) => {
-//   if(res.ok) {
-//     return res.json();
-//   } else {
-//     return console.log('api.PersonInfo Error');
-//   }
-// }).then((data) => {
-//   userInfo.setUserInfo(data);
-//   userInfo.setUserAvatar(data);
-// }).catch(err => console.log(err));
-

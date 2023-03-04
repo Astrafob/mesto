@@ -41,8 +41,6 @@ export class PopupWithForm extends Popup {
       this._objectInputs = this._getInputValues();
       console.log(this._objectInputs);
       this._callbackSubmitForm(this._objectInputs);
-
-      // this.close();
     });
   }
 
